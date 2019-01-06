@@ -50,10 +50,13 @@
 package sha256
 
 import (
+	"bytes"
 	"encoding/hex"
 	"fmt"
+	"math"
 	"strings"
 	"testing"
+	"time"
 )
 
 type sha256Test struct {
@@ -2265,6 +2268,30 @@ func TestSize(t *testing.T) {
 		t.Errorf("Size = %d; want %d", got, Size)
 	}
 }
+
+func TestSequential(t *testing.T) {
+
+	buff := bytes.Buffer{}
+	buff.Write([]byte("Seed data goes here"))
+	out := [32]byte{}
+	n := uint64(math.Pow(10, 8))
+
+	fmt.Printf("Computing %d serial sha-256s...\n", n)
+
+	t1 := time.Now()
+
+	for i := uint64(0); i < n; i++ {
+		out = Sum256(buff.Bytes())
+		buff.Reset()
+		buff.Write(out[:])
+	}
+
+	e := time.Since(t1)
+	r := n / uint64(e.Seconds())
+
+	fmt.Printf("Final hash: %x. Running time: %s. Hash-rate:%d hashes-per-sec\n", buff.Bytes(), e, r)
+}
+
 
 func TestBlockSize(t *testing.T) {
 	c := New()
