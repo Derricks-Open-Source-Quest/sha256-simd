@@ -111,6 +111,13 @@ BenchmarkHash8K-4         6.00 MB/s    570.63 MB/s     95.11x
 BenchmarkHash1M-4         6.05 MB/s    638.23 MB/s    105.49x
 ```
 
+### Sequential SHA256 benchamrks
+- 7.7 mhps: Intel SHA optimized code. CPU: AMD RYZEN 7 1700 8-Core 3.0 GHz cpu. Submmited by @facundomedica
+- 6.6 mhps: Intel SHA optimized code. CPU: Custom for AWS AMD EPYC 7571 2.5 GHz cpu. Submitted by @facundomedica
+- 11.11 mhps: Intel SHA optimized code. CPU: AMD RYZEN 7 1700 8-Core 3.0 GHz cpu. Submmited by @svenski123
+- 9.63 mhps: Intel SHA optimized code. CPU: Custom for AWS AMD EPYC 7571 2.5 GHz cpu. Submitted by @svenski123
+- 6.25 mhps: AVX2 optimized code. CPU: Intel Core i9-8950HK @ 2.90GHz - Coffee Lake - model 158 (9Eh) - Submitted by @svenski123
+
 ## License
 
 Released under the Apache License v2.0. You can find the complete text in the file LICENSE.
